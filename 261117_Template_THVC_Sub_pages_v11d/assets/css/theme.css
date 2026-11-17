@@ -1,0 +1,39 @@
+/* =====================================================================
+   theme.css — PHƯƠNG ÁN MÀU v11d: nền chính Mật ong nhạt #F0DCA6 (màu khách chọn 17/11/2026)
+   Nạp SAU CÙNG. Chỉ đổi màu nền các khối tối (Header, Hero, Footer, khối .dark, menu con...).
+   Muốn đổi màu: sửa 6 biến trong :root. Màu chữ được chọn để đạt tương phản chuẩn (chữ nhỏ >= 4,5:1):
+   nền #F0DCA6: chữ #172743 (11.0:1), chữ phụ #5A5F62 (4.8:1), nhấn #0E6653 (5.1:1), menu con #F2E1B2 chữ chính 11.5:1
+   ===================================================================== */
+:root{
+  --bg:#F0DCA6;                 /* nền chính */
+  --bg-2:#F2E1B2;           /* nền menu con */
+  --bg-rgb:240,220,166;           /* dùng cho lớp phủ trong suốt */
+  --on-bg:#172743;          /* chữ chính trên nền chính */
+  --on-bg-muted:#5A5F62;    /* chữ phụ trên nền chính */
+  --accent-on-bg:#0E6653;   /* chữ nhấn ("mạo hiểm", nhãn, liên kết) trên nền chính */
+  --brand-on-bg:#172743;  /* chữ THVC và dòng phụ ở header/footer */
+}
+/* Trên các khối nền chính, đổi biến chữ cục bộ (các khối navy nhỏ như thẻ, huy hiệu giữ nguyên) */
+.hdr,.hero,.journey,.phase,.ftr,.dark,.photo,.sub-menu{--on-navy:var(--on-bg);--on-navy-muted:var(--on-bg-muted)}
+:root{--paper:#FCFAF5}   /* nền khối trắng: trắng ngà ấm, đỡ chói mắt khi xem lâu */
+body{background:var(--bg)}
+.hdr{background:rgba(var(--bg-rgb),.96);border-bottom-color:rgba(5,11,26,.22)}
+.hero{background:radial-gradient(900px 520px at 78% 38%,rgba(255,255,255,.20),transparent 60%),radial-gradient(700px 500px at 8% 100%,rgba(255,255,255,.12),transparent 65%),var(--bg);color:var(--on-bg)}
+.hero h1,.hero .slogan{color:var(--on-bg)}
+.journey,.phase,.ftr,.dark,.hdr.is-open .nav{background:var(--bg)}
+.sub-menu{background:var(--bg-2)}
+.photo::before{background:linear-gradient(180deg,rgba(var(--bg-rgb),.90),rgba(var(--bg-rgb),.80) 45%,rgba(var(--bg-rgb),.94))}
+/* chữ trong khối nền chính: không làm mờ thêm */
+.nt,.nav .sub-menu a{opacity:1}
+.nt{color:var(--on-bg)}
+/* chữ nhấn */
+.brand-txt,.lockv-box{color:var(--brand-on-bg)}
+.hero h1 .gold,.hero .eyebrow,.ftr-facts dt,.nt:hover,.ni.is-open>.nt,.ni.is-active>.nt,.nav .sub-menu a:hover,.nav .sub-menu a[aria-current="page"]{color:var(--accent-on-bg)}
+.ftr a:hover{color:var(--accent-on-bg);text-decoration:underline}
+.ftr-name strong,.ftr-facts dd,.ftr-facts dd a,.ftr .warn,.ftr .warn div{color:var(--on-bg)}
+.ftr .en,.ftr .en span{color:var(--on-bg-muted)}
+.ftr .warn{border-color:rgba(5,11,26,.35);background:rgba(255,255,255,.28)}
+.hdr .nav-toggle{border-color:rgba(5,11,26,.5);color:var(--on-bg)}
+/* ảnh Hero: nền sáng/xanh không dùng hiệu ứng hòa nền (v11 gốc dành cho nền navy tối) → khung bo góc */
+.mark.mark-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.28);background:#0b1220}
+.mark.mark-photo img{mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none}

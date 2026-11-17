@@ -1,0 +1,89 @@
+/* =====================================================================
+   typography.css — CSS CHUẨN VỀ FONT của template THVC v11
+   (Human 17/11/2026: một file chuẩn để dev không bị rối)
+
+   ĐÂY LÀ NGUỒN CHUẨN cho họ chữ, cỡ chữ, độ đậm. Nạp SAU CÙNG:
+     tokens.css → base.css → components.css → type-scale.css → typography.css
+   - Đổi cỡ chữ toàn site: sửa các biến --fs-* bên dưới (một chỗ).
+   - Đổi họ chữ: sửa --body / --heading / --display trong tokens.css.
+   - base.css, components.css, type-scale.css còn cỡ chữ cũ của từng thành phần;
+     typography.css ghi đè các cỡ đó. Khi dựng lại trong CMS/framework, dev lấy
+     typography.css + tokens.css làm chuẩn, không cần đọc ba file kia để xác định cỡ chữ.
+
+   HỌ CHỮ:  nội dung = Montserrat (--body) · tiêu đề = Be Vietnam Pro 600 (--heading)
+            con số lớn = Barlow Condensed (--display) · tên thương hiệu header/footer = Montserrat 800 + Barlow Condensed 700
+   ĐỘ ĐẬM:  nội dung 400 · nhấn mạnh 700 · tiêu đề 600
+   ===================================================================== */
+/* =====================================================================
+   v11: THANG CỠ CHỮ THỐNG NHẤT (Human 17/11/2026: chỗ to chỗ nhỏ, không đều)
+   Trước: 30 cỡ khác nhau. Sau: 11 cấp theo vai trò. Chỉnh cỡ ở đây, không sửa rải rác.
+   Máy tính:  nhãn 12/13 · giao diện 14/15/16 · thân bài 19 · lời dẫn 20 · tiêu đề thẻ 21 · tiêu đề bài 28 · tiêu đề khối 36 · H1 50
+   Điện thoại (<720px): thân bài 17 · lời dẫn 18 · tiêu đề thẻ 19 (thấp hơn 2px như quy ước v10)
+   ===================================================================== */
+:root{
+  --fs-micro:12px;   /* nhãn "Mẫu", thẻ loại tin, nhãn nhỏ */
+  --fs-label:13px;   /* tiêu đề cột bảng, số hiệu, nhãn tên tiếng Anh */
+  --fs-meta:15px;    /* ngày, chú thích, gợi ý ô nhập, đường dẫn trang, liên kết "Xem thêm" */
+  --fs-ui:16px;      /* nội dung thông tin, ô bảng, bản tin ngắn, hỏi đáp (tiêu đề) */
+  --fs-body:19px;    /* thân bài, danh sách, mô tả thẻ */
+  --fs-lead:20px;    /* lời dẫn đầu trang, đoạn mở đầu */
+  --fs-card:21px;    /* tiêu đề thẻ, tiêu đề nhóm trong form */
+  --fs-h2:28px;      /* tiêu đề trong bài */
+  --fs-block:36px;   /* tiêu đề khối Trang chủ */
+}
+/* nhãn nhỏ */
+.demo,.tag,.ftr .lockv-box small{font-size:var(--fs-micro)}
+dt{font-size:14px}                    /* nhãn trong danh sách thông tin */
+th{font-size:var(--fs-label)}
+/* meta */
+.meta,.meta span,.date,.hint,.demo-note,.fs-note,.crumbs,.crumbs li,.crumbs a,.crumbs span,.more,.act-all,.sumc .links a,.guide li b{font-size:var(--fs-meta)}
+/* giao diện / bảng */
+td,td a{font-size:var(--fs-ui)}
+th{font-size:var(--fs-label)}
+/* thân bài */
+.article p:not(.lede):not(.demo-note),.article li,main ul li,main ol li,.nbody p,.sumc p,.sum p,.ncard p,.slide p,.side-box p,details p,.agenda li,.agenda li span,.eco-item span{font-size:var(--fs-body)}
+.side-list li a{font-size:var(--fs-body)}
+/* lời dẫn */
+.lead,.lede,.phdr .lead,.hero .slogan{font-size:var(--fs-lead)}
+/* tiêu đề thẻ / nhóm */
+.nbody h3,.ncard h3,.sumc h3,.sum h3,.law h3,legend,.guide h2,.ccard h2,.fs legend{font-size:var(--fs-card)}
+/* tiêu đề trong bài / khối */
+.article h2{font-size:var(--fs-h2)}
+h2.display,h2.dir-h{font-size:var(--fs-block)}
+.hero .lead{font-size:var(--fs-lead)}
+@media (max-width:719px){
+  :root{--fs-body:17px;--fs-lead:18px;--fs-card:19px;--fs-h2:24px;--fs-block:30px}
+}
+
+/* ---- các trường hợp còn lệch (tăng độ ưu tiên bằng "body main") ---- */
+body main dt,body main small{font-size:var(--fs-micro)}
+body main dt{font-size:14px}
+body main th{font-size:var(--fs-label)}
+body main .side-box p,body main .side-box p a{font-size:var(--fs-ui)}
+body main .article p.lede{font-size:var(--fs-lead)}
+body main .fs p.fs-note,body main figcaption,body main .count,body main .date,body main .article .demo-note,body main .demo-note{font-size:var(--fs-meta)}
+body main blockquote a{font-size:inherit}
+body main ol>li,body main ul>li{font-size:var(--fs-body)}
+body main .crumbs li{font-size:var(--fs-meta)}
+body main .nbody h3,body main .ncard h3{font-size:var(--fs-card)}
+.next b{font-size:var(--fs-h2)}
+.ftr-name strong,.ftr-name strong span{font-size:var(--fs-ui)}
+@media (max-width:719px){.next b{font-size:22px}}
+
+/* ---- lớp ưu tiên cho các thành phần có luật riêng trong components.css ---- */
+.tag,.clist small{font-size:var(--fs-micro)}
+.info-list dt,.facts dt,.prose thead th,.prose th{font-size:var(--fs-label)}
+.doc .left .date,.article figure figcaption,.article figcaption{font-size:var(--fs-meta)}
+.article blockquote a{font-size:inherit}
+.form-aside .side-box p,.form-aside .side-box p a{font-size:var(--fs-ui)}
+.guide ol>li,.guide li{font-size:var(--fs-ui)}
+.ncard .nbody h3{font-size:var(--fs-card)}
+@media (max-width:719px){.tag,.demo,.clist small{font-size:var(--fs-micro)}.info-list dt,.facts dt{font-size:var(--fs-label)}}
+.article blockquote{font-size:var(--fs-body)}
+.check{font-size:var(--fs-ui)}
+.guide li{font-size:var(--fs-ui)}
+
+/* ---- tương phản chữ (chuẩn 4,5:1 cho chữ nhỏ): các chữ vàng nhạt / xám nhạt trên nền sáng ---- */
+.fs legend span,.agenda time{color:#8A5A00}
+.demo,.ph{color:#5A6478;opacity:1}
+.demo{border-color:#5A6478}
